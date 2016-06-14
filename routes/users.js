@@ -4,7 +4,7 @@ var Users = require('../models/users');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  Users.getAllUsers().then(function(data) {
+  Users.load(1).then(function(data) {
     console.log(data);
     res.end();
   });
