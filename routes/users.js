@@ -10,5 +10,18 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/', function(req, res, next) {
+  Users.create(req.body.user).then(function(data) {
+    console.log(data);
+    res.end();
+  });
+});
+
+router.put('/:id/update', function(req, res, next) {
+  User.edit(req.params.id, req.body.updates).then( function(data) {
+    console.log(data);
+    res.end();
+  })
+})
 
 module.exports = router;
