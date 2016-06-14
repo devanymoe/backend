@@ -4,9 +4,31 @@ function Users() {
   return knex('users');
 }
 
-module.exports = {
-  getUsers: function() {
-    return Users().select();
-  }
-
+function load(user_id) {
+  return Users().where({id: user_id }).select();
 }
+
+function create(user) {
+  return Users()
+          .insert({
+            handle: user.email,
+            firstName: user.firstName,
+            notify: false,
+            media: false,
+          });
+}
+
+function edit(user_id, updates) {
+  return Users()
+          .where({id: user_id})
+          .update({
+            notify: updates[0],
+            media: updates[1]
+          });
+}
+
+module.exports =  {
+                    load,
+                    create,
+                    edit
+                  }
