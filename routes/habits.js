@@ -5,7 +5,7 @@ var Habits = require('../models/habits');
 router.get('/', function(req, res, next) {
   Habits.getAll(4).then(function(data) {
     console.log(data);
-    res.end();
+    res.send(data);
   });
 });
 
