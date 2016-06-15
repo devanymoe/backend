@@ -18,7 +18,7 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   Habits.add(req.body.habit).then(function(data) {
-    res.redirect('/habits');
+    res.send(data);
   });
 });
 
