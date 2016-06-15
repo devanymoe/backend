@@ -6,7 +6,9 @@ var Users = require('../models/users');
 router.get('/', function(req, res, next) {
   Users.load(1).then(function(data) {
     console.log(data);
-    res.end();
+    res.send(data);
+  }).catch( (err) => {
+    console.log(err);
   });
 });
 
