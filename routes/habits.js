@@ -5,7 +5,7 @@ var Habits = require('../models/habits');
 router.get('/', function(req, res, next) {
   Habits.getAll(4).then(function(data) {
     console.log(data);
-    res.end();
+    res.send(data);
   });
 });
 
@@ -18,7 +18,7 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   Habits.add(req.body.habit).then(function(data) {
-    res.redirect('/habits');
+    res.send(data);
   });
 });
 
