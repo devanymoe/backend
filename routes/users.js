@@ -4,7 +4,6 @@ var knex = require('../db/knex');
 var Users = require('../models/users');
 var Habits = require('../models/habits');
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   Users.load(1).then(function(data) {
     res.send(data);
@@ -34,7 +33,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.put('/:id/update', function(req, res, next) {
-  User.edit(req.params.id, req.body.updates).then( function(data) {
+  User.edit(req.params.id, req.body.updates).then(function(data) {
     res.send(data);
   })
 })
