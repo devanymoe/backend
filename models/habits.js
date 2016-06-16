@@ -38,8 +38,8 @@ module.exports = {
   },
   update: function(habit, id) {
     return Habits()
-            .where({ id: id})
-            .insert({
+            .where('id', id)
+            .update({
               user_id: habit.user_id,
               title: habit.title,
               desc: habit.desc,
@@ -52,12 +52,11 @@ module.exports = {
               thu: habit.thu,
               fri: habit.fri,
               sat: habit.sat
-            });
+            }).debug(true);
   },
   delete: function(id) {
     return Habits()
             .where({ id:id})
             .del();
   }
-
 }
