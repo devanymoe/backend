@@ -37,9 +37,10 @@ module.exports = {
             });
   },
   update: function(habit, id) {
+    console.log(habit);
     return Habits()
-            .where({ id: id})
-            .insert({
+            .where({ id:id })
+            .update({
               user_id: habit.user_id,
               title: habit.title,
               desc: habit.desc,
@@ -59,5 +60,4 @@ module.exports = {
             .where({ id:id})
             .del();
   }
-
 }
