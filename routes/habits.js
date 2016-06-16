@@ -29,9 +29,19 @@ router.post('/success', function(req, res, next) {
 });
 
 router.put('/:id/update', function(req, res, next) {
-  Habits.update(req.body, req.params.id).then( function(data) {
-    res.send(data);
-  });
+  habit = req.body;
+
+  function isValidString(value) {
+    return typeof value !== 'undefined' && value !== null && typeof value == 'string' &&  value.trim() !== '';
+  }
+
+  if(isValidString(habit.title) && (typeof habit.user_id === 'number')) {
+    Habits.update(habit, req.params.id).then( function(data) {
+      res.send(data);
+    });
+  } else {
+    console.log('Title and user_id are not valid');
+  }
 });
 
 router.delete('/:id/delete', function(req, res, next) {
