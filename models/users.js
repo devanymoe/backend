@@ -11,7 +11,7 @@ function load(user_id) {
 function create(user) {
   return Users()
           .insert({
-            handle: user.email,
+            handle: user.handle,
             firstName: user.firstName,
             notify: false,
             media: false,
