@@ -15,11 +15,11 @@ module.exports = {
     return Success()
             .insert({
               habit_id: done.habit_id,
-              date: done.date
+              success: done.date
             });
   },
-  remove: function() {
-    return Success(id)
+  remove: function(id) {
+    return Success()
             .where({
               id:id
             })
