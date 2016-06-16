@@ -6,9 +6,14 @@ var Success = require('../models/success');
 
 router.get('/:id', function(req, res, next) {
   Habits.getOne(req.params.id).then(function(data) {
-    console.log(data);
-    res.send(data);
-  })
+    return knex('habits_users').where({ habit_id : req.params.id }).pluck('success').then(function(successData) {
+      if(successData.length) {
+        data.dates = successData;
+      }
+    }).then(function() {
+      res.send(data);
+    })
+  });
 });
 
 router.post('/', function(req, res, next) {
