@@ -3,9 +3,7 @@ var router = express.Router();
 var knex = require('../db/knex');
 var Users = require('../models/users');
 var Habits = require('../models/habits');
-var Success = require('../models/success');
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   Users.load(1).then(function(data) {
     res.send(data);

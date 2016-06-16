@@ -18,7 +18,6 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   Habits.add(req.body).then(function(data) {
-    console.log(data);
     res.send(data);
   });
 });
@@ -26,20 +25,19 @@ router.post('/', function(req, res, next) {
 router.post('/success', function(req, res, next) {
   Success.markDone(req.body).then(function(data) {
     res.send(data);
-  })
-})
+  });
+});
 
 router.put('/:id/update', function(req, res, next) {
   Habits.update(req.body, req.params.id).then( function(data) {
     res.send(data);
-  })
-})
-
+  });
+});
 
 router.delete('/:id/delete', function(req, res, next) {
   Habits.delete(req.params.id).then( (data) => {
     res.send(data);
-  })
+  });
 });
 
 router.delete('/success/:id', function(req, res, next) {
