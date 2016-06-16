@@ -1,13 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Habits = require('../models/habits');
-
-router.get('/', function(req, res, next) {
-  Habits.getAll(4).then(function(data) {
-    console.log(data);
-    res.send(data);
-  });
-});
+var Success = require('../models/success');
 
 router.get('/:id', function(req, res, next) {
   Habits.getOne(req.params.id).then(function(data) {
@@ -17,13 +11,15 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  Habits.add(req.body.habit).then(function(data) {
+  console.log(req.body);
+  Habits.add(req.body).then(function(data) {
+    console.log(data);
     res.send(data);
   });
 });
 
 router.put('/:id/update', function(req, res, next) {
-  Habits.update(req.body.habit, req.params.id).then( function(data) {
+  Habits.update(req.body, req.params.id).then( function(data) {
     res.send(data);
   })
 })

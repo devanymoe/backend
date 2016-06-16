@@ -15,7 +15,7 @@ module.exports = {
     return Success()
             .insert({
               habit_id: done.habit_id,
-              date: done.date;
+              date: done.date
             });
   },
   remove: function() {
@@ -25,6 +25,7 @@ module.exports = {
             })
             .first()
             .del();
-  }
+  },
+  Success: Success
 
 }
