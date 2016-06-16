@@ -57,7 +57,6 @@ module.exports = {
   delete: function(id) {
     return Habits()
             .where({ id:id})
-            .first()
             .del();
   }
 

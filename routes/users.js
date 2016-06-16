@@ -3,7 +3,6 @@ var router = express.Router();
 var knex = require('../db/knex');
 var Users = require('../models/users');
 var Habits = require('../models/habits');
-var Success = require('../models/success');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -15,13 +14,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:user_id/habits', function(req, res, next) {
-  // Habits.where('user_id', req.params.user_id).join('Success', 'habit_id', 'habits.id')
-
   Habits.getAll(req.params.user_id).then(function(arr) {
     Promise.all(arr.map(function (habit) {
-      console.log('getting successes');
       return knex('habits_users').where({ habit_id : habit.id }).pluck('success').then(function(successData) {
-        console.log('hi');
         if(successData.length) {
           habit.dates = successData;
         }
