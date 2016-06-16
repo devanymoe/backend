@@ -4,18 +4,42 @@ function Users() {
   return knex('users');
 }
 
-function load(user_id) {
-  return Users().where({id: user_id }).select();
+function login(profile) {
+  return load(profile.email)
+          .then(function(user) {
+            if (user) {
+              return user;
+            }
+            else {
+              var newUser = {
+                           handle: profile.email,
+                           firstName : profile.name.split(' ')[0]
+                         }
+
+              return create(newUser)
+                      .then(function(users) {
+                        return users[0];
+                      });
+            }
+  });
+}
+
+function load(email) {
+  return Users()
+          .where({handle: email}).first()
+          .then( function(user) {
+            return user
+          });
 }
 
 function create(user) {
   return Users()
           .insert({
-            handle: user.handle,
+            handle: user.email,
             firstName: user.firstName,
             notify: false,
             media: false,
-          });
+          }, '*');
 }
 
 function edit(user_id, updates) {
@@ -28,6 +52,7 @@ function edit(user_id, updates) {
 }
 
 module.exports =  {
+                    login,
                     load,
                     create,
                     edit
