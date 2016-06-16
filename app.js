@@ -1,3 +1,4 @@
+require('dotenv').load();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,7 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var habits = require('./routes/habits');
@@ -27,6 +29,9 @@ app.options('*', cors());
 app.use(cors());
 
 app.use('/', routes);
+
+app.use(expressJWT({ secret: process.env.shh }));
+
 app.use('/users', users);
 app.use('/habits', habits);
 
