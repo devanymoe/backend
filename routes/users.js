@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:user_id/habits', function(req, res, next) {
   Habits.getAll(req.params.user_id).then(function(arr) {
-    Promise.all(arr.map(function (habit) {
+    Promise.all(arr.map(function(habit) {
       return knex('habits_users').where({ habit_id : habit.id }).pluck('success').then(function(successData) {
         if(successData.length) {
           habit.dates = successData;
