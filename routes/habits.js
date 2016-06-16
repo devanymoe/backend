@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/:id/success', function(req, res, next) {
-  Success.markDone(req.params.id, date).then(function(data) {
+  Success.markDone(req.params.id, req.body.date).then(function(data) {
     res.send(data);
   });
 });
@@ -40,9 +40,9 @@ router.delete('/:id/delete', function(req, res, next) {
   });
 });
 
-router.delete('/:id/success', function(req, res, next) {
-  Success.remove(req.params.id, date).then((data) => {
-    res.send(data);
+router.delete('/:id/success/:date', function(req, res, next) {
+  Success.remove(req.params.id, req.params.date).then((data) => {
+    res.sendStatus(204);
   });
 });
 
