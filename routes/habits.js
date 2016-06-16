@@ -22,8 +22,8 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.post('/success', function(req, res, next) {
-  Success.markDone(req.body).then(function(data) {
+router.post('/:id/success', function(req, res, next) {
+  Success.markDone(req.params.id, date).then(function(data) {
     res.send(data);
   });
 });
@@ -40,8 +40,8 @@ router.delete('/:id/delete', function(req, res, next) {
   });
 });
 
-router.delete('/success/:id', function(req, res, next) {
-  Success.remove(req.params.id).then((data) => {
+router.delete('/:id/success', function(req, res, next) {
+  Success.remove(req.params.id, date).then((data) => {
     res.send(data);
   });
 });

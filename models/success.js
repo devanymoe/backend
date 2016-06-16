@@ -11,17 +11,18 @@ module.exports = {
               id: id
             });
   },
-  markDone: function(done) {
+  markDone: function(id, date) {
     return Success()
             .insert({
-              habit_id: done.habit_id,
-              success: done.date
+              habit_id: id,
+              success: date
             });
   },
-  remove: function(id) {
+  remove: function(id, date) {
     return Success()
             .where({
-              id:id
+              habit_id: id,
+              success: date
             })
             .first()
             .del();
