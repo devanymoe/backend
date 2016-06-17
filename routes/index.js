@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
   var token = req.body.token;
-  console.log(req.body)
   Auth.tokExc(token)
   .then(function(profile) {
     Users.login(profile)
@@ -21,6 +20,7 @@ router.post('/login', function(req, res, next) {
       var cur_user = { token: jwt.sign( {user: user}, process.env.shh),
                        user: user
                      };
+                     console.log(cur_user);
 
       res.json(cur_user);
     })
