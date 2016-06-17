@@ -28,9 +28,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.options('*', cors());
 app.use(cors());
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Headers', 'Authorization');
+  next();
+});
+
 app.use('/', routes);
 
-app.use(expressJWT({ secret: process.env.shh }));
+// app.use(expressJWT({ secret: process.env.shh }));
 
 app.use('/users', users);
 app.use('/habits', habits);
