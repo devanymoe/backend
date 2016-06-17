@@ -20,7 +20,6 @@ router.post('/login', function(req, res, next) {
       var cur_user = { token: jwt.sign( {user: user}, process.env.shh),
                        user: user
                      };
-                     console.log(cur_user);
 
       res.json(cur_user);
     })
