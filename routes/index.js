@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
   var token = req.body.token;
+  console.log(req.body)
   Auth.tokExc(token)
   .then(function(profile) {
     Users.login(profile)
